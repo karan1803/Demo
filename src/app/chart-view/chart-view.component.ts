@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ChartOptions } from 'chart.js';
+import { ChartConfiguration, ChartOptions } from 'chart.js';
+import DatalabelsPlugin from 'chartjs-plugin-datalabels';
 
 @Component({
   selector: 'app-chart-view',
@@ -8,18 +9,41 @@ import { ChartOptions } from 'chart.js';
 })
 export class ChartViewComponent {
 
-  pieChartOptions: ChartOptions = {
+
+  public pieChartOptions: ChartConfiguration['options'] = {
     responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'right',
+      },
+      title: {
+        display: true,
+        text: "Sale Details",
+        font: {
+          size: 24,
+        }
+      },
+      datalabels: {
+        formatter: (value, ctx) => {
+          if (ctx.chart.data.labels) {
+            return ctx.chart.data.labels[ctx.dataIndex];
+          }
+        },
+      },
+    }
   };
+
+  
 
 
   pieChartData = {
-    labels: [ [ 'Download', 'Sales' ], [ 'In', 'Store', 'Sales' ], 'Mail Sales' ],
+    labels: [ [ 'Download', 'Sales' ], [ 'In', 'Store', 'Sales' ], 'Mail Sales', 'Logistics Sales', 'Hardware  Sales' ],
     datasets: [ {
-      data: [ 300, 500, 100 ]
+      data: [ 300, 500, 100 , 400 , 300 ]
     } ],
     legend: true,
-    plugins: [],
+    plugins: [DatalabelsPlugin],
   }
 
   constructor(){
