@@ -1,1 +1,19 @@
-<p>table-view works!</p>
+<table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <ng-container *ngFor="let head of columnsList">
+            <th scope="col">{{head.header}}</th>
+        </ng-container>
+      </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let data of usersList;let i = index;">
+            <tr>
+              <th scope="row">{{i+1}}</th>
+              <td>{{data.first}}</td>
+              <td>{{data.last}}</td>
+              <td>{{data.handler}}</td>
+            </tr>
+        </ng-container>
+    </tbody>
+  </table>
