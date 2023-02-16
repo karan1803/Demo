@@ -1,1 +1,8 @@
-<p>chart-view works!</p>
+<canvas baseChart
+  [type]="'pie'"
+  [datasets]="pieChartData.datasets"
+  [labels]="pieChartData.labels"
+  [options]="pieChartOptions"
+  [plugins]="pieChartData.plugins"
+  [legend]="pieChartData.legend">
+</canvas>
